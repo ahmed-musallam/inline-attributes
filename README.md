@@ -30,4 +30,8 @@ Can be converted to:
 <a href="/"><span color="red" class="highlight">text</span><a></a></a>
 ```
 
+## usage
+
+look in `indes.js`, you're probably better off if you copyb it into your project and use the exported functions. All documented there.
+
 See `index.test` for more examples and usage
