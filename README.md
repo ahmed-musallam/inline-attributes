@@ -29,3 +29,5 @@ Can be converted to:
 ```html
 <a href="/"><span color="red" class="highlight">text</span><a></a></a>
 ```
+
+See `index.test` for more examples and usage
