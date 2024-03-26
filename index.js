@@ -7,7 +7,7 @@ const encodeHTML = (str) =>
 const isValidHtmlAttr = (key) => key.match(/^[a-zA-Z0-9-]+$/);
 
 /**
- *
+ * converts html with spans to text with inline attributes.
  * @param {string} html
  */
 export const html2text = (html) => {
@@ -59,34 +59,26 @@ export const text2html = (inputStr) => {
 };
 
 /**
- * walkes the DOM and replaces text nodes with spans if they have inline-attributes
+ * helper - walkes the DOM and replaces text nodes with spans if they have inline-attributes
  * @param {HTMLElement} main
  */
 export function decorateSpans(main) {
-  const walker = document.createTreeWalker(
-    main,
-    NodeFilter.SHOW_TEXT,
-    null,
-    null
-  );
-  let node;
-  while ((node = walker.nextNode())) {
-    //console.log(node.textContent);
-    decorateTextNode(node);
+  const walker = document.createTreeWalker(main, NodeFilter.SHOW_TEXT);
+  while (walker.nextNode()) {
+    decorateTextNode(walker.currentNode);
   }
 }
 
 /**
- *
+ * decorates a text node with inline attributes to a span element
  * @param {Node} node
  */
 export function decorateTextNode(node) {
   const textContent = node.textContent;
-
   if (textContent.includes("[") && textContent.includes("]{")) {
     const span = document.createElement("span");
     span.innerHTML = text2html(textContent);
-    requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
       node.replaceWith(span);
     });
   }
