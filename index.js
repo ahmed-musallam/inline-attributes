@@ -11,6 +11,7 @@ const isValidHtmlAttr = (key) => key.match(/^[a-zA-Z0-9-]+$/);
  * @param {string} html
  */
 export const html2text = (html) => {
+  if (!html) return html;
   // Regular expression to match the pattern
   const regex = /<span (.*?)>(.*?)<\/span>/g;
 
@@ -37,11 +38,12 @@ export const html2text = (html) => {
 /**
  * converts text with attributes to <span> elements wit given attributes.
  * eg: [text]{color="red" class="highlight"} => <span color="red" class="highlight">text</span>
- * @param {string} expression
+ * @param {string} inputStr
  */
-export const text2html = (expression) => {
+export const text2html = (inputStr) => {
+  if (!inputStr) return inputStr;
   const regex = /\[([^[\]]*)\]\{(.*?)\}/g;
-  return expression.replace(regex, function (match, text, attrs) {
+  return inputStr.replace(regex, function (match, text, attrs) {
     text = encodeHTML(text);
     attrs = attrs
       .split(/\s+(?=(?:[^"]*"[^"]*")*[^"]*$)/g) // match spaces only if not within quotes

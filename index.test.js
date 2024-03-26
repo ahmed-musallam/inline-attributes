@@ -18,6 +18,11 @@ const testCases = [
     html: `prefix <span class="foo &#62; bar" id="bar &#60; foo">Lorem ipsum dolor</span>`,
   },
   {
+    description: "text to with attribute values that are empty",
+    text: `prefix [Lorem ipsum dolor]{class="" id=""}`,
+    html: `prefix <span class="" id="">Lorem ipsum dolor</span>`,
+  },
+  {
     description: "span in link",
     text: `prefix <a href="/">[like this one]{type="badge" color="green"}</a>`,
     html: `prefix <a href="/"><span type="badge" color="green">like this one</span></a>`,
