@@ -13,6 +13,11 @@ const testCases = [
     html: `prefix <span class="foo here" id="foo there">Lorem ipsum dolor</span>`,
   },
   {
+    description: "text to with attributes values that have spaces - multiple",
+    text: `prefix [Lorem ipsum dolor]{class="foo here" id="foo there"} [Lorem]{class="bar" id="baz"} some text [dolor]{class="bar2" id="baz2"}`,
+    html: `prefix <span class="foo here" id="foo there">Lorem ipsum dolor</span> <span class="bar" id="baz">Lorem</span> some text <span class="bar2" id="baz2">dolor</span>`,
+  },
+  {
     description: "text to with attribute values that have html reserved chars",
     text: `prefix [Lorem ipsum dolor]{class="foo > bar" id="bar < foo"}`,
     html: `prefix <span class="foo &#62; bar" id="bar &#60; foo">Lorem ipsum dolor</span>`,

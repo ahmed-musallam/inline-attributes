@@ -7,6 +7,19 @@ const encodeHTML = (str) =>
 const isValidHtmlAttr = (key) => key.match(/^[a-zA-Z0-9-]+$/);
 
 /**
+ *
+ * @param {string} text
+ * @param {Object.<string, string>} attributes
+ * @returns
+ */
+export const createTextWithInlineAttributes = (text, attributes) => {
+  const attrs = Object.entries(attributes)
+    .map(([key, value]) => `${key}="${value}"`)
+    .join(" ");
+  return `[${text}]{${attrs}}`;
+};
+
+/**
  * converts html with spans to text with inline attributes.
  * @param {string} html
  */
