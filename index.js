@@ -49,7 +49,7 @@ export const html2text = (html) => {
 };
 
 /**
- * converts text with attributes to <span> elements wit given attributes.
+ * converts text with attributes to <span> elements with given attributes.
  * eg: [text]{color="red" class="highlight"} => <span color="red" class="highlight">text</span>
  * @param {string} inputStr
  */

@@ -32,6 +32,12 @@ const testCases = [
     text: `prefix <a href="/">[like this one]{type="badge" color="green"}</a>`,
     html: `prefix <a href="/"><span type="badge" color="green">like this one</span></a>`,
   },
+  {
+    description:
+      "test expressions that might be confused with inline attributes",
+    text: `prefix [Lorem ipsum dolor] {class="foo" id="bar"} {} { [ }`,
+    html: `prefix [Lorem ipsum dolor] {class="foo" id="bar"} {} { [ }`,
+  },
 ];
 
 testCases.forEach(({ description, text, html }) => {
