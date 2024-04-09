@@ -35,8 +35,8 @@ const testCases = [
   {
     description:
       "test expressions that might be confused with inline attributes",
-    text: `prefix [Lorem ipsum dolor] {class="foo" id="bar"} {} { [ }`,
-    html: `prefix [Lorem ipsum dolor] {class="foo" id="bar"} {} { [ }`,
+    text: `prefix [Lorem ipsum dolor] {class="foo" id="bar"} {} { [ } [Lorem]{class}`,
+    html: `prefix [Lorem ipsum dolor] {class="foo" id="bar"} {} { [ } [Lorem]{class}`,
   },
 ];
 

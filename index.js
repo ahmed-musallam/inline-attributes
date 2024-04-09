@@ -55,17 +55,22 @@ export const html2text = (html) => {
  */
 export const text2html = (inputStr) => {
   if (!inputStr) return inputStr;
-  const regex = /\[([^[\]]*)\]\{(.*?)\}/g;
+  const regex = /\[([^[\]]+)\]{([^}]+)}/g;
   return inputStr.replace(regex, function (match, text, attrs) {
     text = encodeHTML(text);
+
     attrs = attrs
       .split(/\s+(?=(?:[^"]*"[^"]*")*[^"]*$)/g) // match spaces only if not within quotes
-      .map((attr) => {
-        const [key, value] = attr.split("=");
-        return `${key}="${encodeHTML(value.replace(/"/g, ""))}"`;
-      })
-      .join(" ");
+      .map((attr) => attr.split("="));
 
+    const allValid = attrs.every(
+      ([key, value]) => key !== undefined && value !== undefined
+    );
+    if (!allValid) return match;
+
+    attrs = attrs
+      .map(([key, value]) => `${key}="${encodeHTML(value.replace(/"/g, ""))}"`)
+      .join(" ");
     // Construct the HTML equivalent
     return `<span ${attrs}>${text}</span>`;
   });
